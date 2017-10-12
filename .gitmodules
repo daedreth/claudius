@@ -1,0 +1,3 @@
+[submodule "ImageDialogQt"]
+	path = ImageDialogQt
+	url = https://github.com/daedreth/ImageDialogQt
