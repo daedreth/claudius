@@ -3,6 +3,7 @@ Are you tired of the discord developers using the gtk filepicker without image p
 
 Me too. Luckily, even I can dedicate a few minutes to write a better alternative.
 
+
 # Usage
 
 You need qt4(or qt5), python3.5(or higher), imagemagick, ranger, discord.py and a terminal emulator installed.
@@ -26,9 +27,26 @@ Just type `claudius` in a shell and watch some magic happen. Alternatively launc
 
 Once you type your command in any channel or any private message, the appropriate action will take place.
 
+
 # Image previews
 
 Don't even get me started on the Discord devs using the gtk filepicker by default, but by some hacky adjustments to the QFileDialog or the awesomeness that ranger is, we now have previews.
+
+
+# Polybar module
+
+If you happen to be using polybar currently, you may add the following module to its configuration.
+Left click opens claudius, right click closes it.
+
+~~~ sh
+[module/claudius]
+type = custom/script
+exec = pgrep -a python | grep 'claudius' &> /dev/null && echo "Claudius: ON" || echo "Claudius: OFF"
+interval = 3
+click-left = claudius &
+click-right = pkill -f claudius
+~~~
+
 
 # License
 It's GPL-3, but it's just a little script.
