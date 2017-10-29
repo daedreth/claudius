@@ -1,6 +1,8 @@
-# QtClaudius Makefile
+# Claudius Makefile
 
 CONFIGPATH = ${HOME}/.config/claudius/
+CONFIGFILE = ${CONFIGPATH}/config.ini
+TARGET = /usr/bin/claudius
 
 .PHONY:
 all: ${CONFIGPATH}/config.ini
@@ -8,11 +10,11 @@ all: ${CONFIGPATH}/config.ini
 
 install: all
 	cp ImageDialogQt/imagedialogqt /usr/bin/imagedialogqt
-	cp claudius.py /usr/bin/claudius
+	cp claudius.py ${TARGET}
 
-${CONFIGPATH}/config.ini: /ImageDialogQt/imagedialogqt
+${CONFIGFILE}: /ImageDialogQt/imagedialogqt
 	mkdir -p ${CONFIGPATH}
-	cp config.ini ${CONFIGPATH}/config.ini
+	test -s ${CONFIGFILE} || cp config.ini ${CONFIGFILE}
 
 /ImageDialogQt/imagedialogqt: /ImageDialogQt/imagedialogQt.pro
 	cd ImageDialogQt &&\
