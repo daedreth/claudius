@@ -63,3 +63,5 @@ async def on_message(message):
 if __name__ == '__main__':
     print('Connecting, please wait...')
     client.run(config['Main']['token'], bot=False)
+
+    #MADE BY RAI OBVIOUSLY
