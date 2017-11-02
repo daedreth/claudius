@@ -32,18 +32,20 @@ async def on_message(message):
             output = proc.stdout.readlines()
             for line in output:
                 line = str(line, 'utf-8')
-                print('Uploading: ' + line)
-                with open(filePath, 'w') as uploadFile:
-                    uploadFile.write(line)
-                await client.send_file(message.channel, line)
+                if line:
+                    print('Uploading: ' + line)
+                    with open(filePath, 'w') as uploadFile:
+                        uploadFile.write(line)
+                    await client.send_file(message.channel, line)
         
         if message.content == config['Main']['uploadcommand']:
             await client.delete_message(message)
             os.system(command)
             with open(filePath) as uploadFile:
                 pathToUpload = uploadFile.readline()
-                print('Uploading: ' + pathToUpload)
-                await client.send_file(message.channel, pathToUpload)
+                if pathToUpload:
+                    print('Uploading: ' + pathToUpload)
+                    await client.send_file(message.channel, pathToUpload)
 
         if message.content == config['Main']['reuploadcommand']:
             await client.delete_message(message)
